@@ -1,6 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "vite.config.ts"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -9,7 +9,8 @@
   },
   "types": [
     "@types/leaflet",
-    "@types/leaflet-routing-machine"
+    "@types/leaflet-routing-machine",
+    "node"
   ],
   "references": [
     {
