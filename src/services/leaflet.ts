@@ -22,7 +22,7 @@ class LeafletMaps {
     )
     this.router = L.routing.osrmv1({
       serviceUrl: config.osrmUrl,
-      language: 'en',
+      language: 'pt-BR',
       
     });
 

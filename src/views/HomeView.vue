@@ -46,4 +46,9 @@ export default defineComponent({
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.steps {
+  overflow: auto;
+  max-height: 70vh;
+}
 </style>

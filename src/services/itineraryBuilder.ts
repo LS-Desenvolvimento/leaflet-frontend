@@ -7,11 +7,13 @@ class builder extends L.Routing.ItineraryBuilder {
   }
 
   createStepsContainer(): HTMLElement {
-    return L.DomUtil.create('div')
+    return L.DomUtil.create('div', 'steps')
   }
 
   createStep(text: string, distance: string, icon: string, steps: HTMLElement): HTMLTableRowElement {
-    let row = L.DomUtil.create('tr')
+    let row = L.DomUtil.create('tr', '', steps)
+    let info = L.DomUtil.create('span', '', row)
+    info.innerHTML = text + ' - ' + distance
     return row;
   }
 }
