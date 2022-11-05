@@ -1,5 +1,7 @@
 <template>
-  <div id="map"></div>
+  <div>
+    <div id="map"></div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -26,18 +28,22 @@ export default defineComponent({
       this.map.Route(routeFixed);
       return;
     }
-    if(route) {
+    if (route) {
       let cord = route.split(',')
       this.map.setCenter([parseFloat(cord[0]), parseFloat(cord[1])])
     }
-    // console.log(window.Storage.)
   },
 })
 </script>
 
-<style scoped>
+<style>
 #map {
   width: 100vw;
   height: 100vh;
+}
+.info {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding-left: 10px;
+  padding-right: 10px;
 }
 </style>

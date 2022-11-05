@@ -2,6 +2,7 @@ import L from 'leaflet'
 import "leaflet-routing-machine"
 import "leaflet/dist/leaflet.css";
 import config from "../config/mapConfig"
+import builder from './itineraryBuilder';
 class LeafletMaps {
   private map: L.Map;
   private tileLayer: L.TileLayer;
@@ -25,10 +26,13 @@ class LeafletMaps {
       
     });
 
-
+    const build = new builder()
     this.route = L.routing.control({
       router: this.router,
       showAlternatives: false,
+      itineraryBuilder: build,
+      summaryTemplate: "<h2>{time}, {distance}</h2>",
+      containerClassName: "info"
     })
     this.tileLayer.addTo(this.map);
   }
@@ -37,8 +41,7 @@ class LeafletMaps {
     const route = Waypoints.map(res => {
       return new L.LatLng(res[0], res[1])
     })
-    this.route = this.route.setWaypoints(route).addTo(this.map)
-    this.route.hide()
+    this.route.setWaypoints(route).addTo(this.map).hide()
   }
 
   public ChangeMapView(tileId: string) {
