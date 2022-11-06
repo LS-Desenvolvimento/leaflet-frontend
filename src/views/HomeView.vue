@@ -26,13 +26,34 @@ export default defineComponent({
         return [parseFloat(cords[0]), parseFloat(cords[1])]
       }) as L.LatLngTuple[];
       this.map.Route(routeFixed);
+      this.map.onRouteChange(this.changeUrltoNewWaypoints)
       return;
     }
     if (route) {
       let cord = route.split(',')
       this.map.setCenter([parseFloat(cord[0]), parseFloat(cord[1])])
     }
+    this.map.onRouteChange(this.changeUrltoNewWaypoints)
   },
+
+  methods: {
+    changeUrltoNewWaypoints() {
+      const waypoints = this.map.getAllWaypoints()
+      let url = this.$router.currentRoute.value.fullPath;
+      waypoints.forEach((res, index) => {
+        let point = 'loc=' + res.latLng.lat.toFixed(6) + ',' + res.latLng.lng.toFixed(6)
+        
+        if(index == 0) {
+          url= '/'
+          point = '?' + point;
+        } else {
+          point = '&' + point;
+        }
+        url = url + point
+      })
+      this.$router.push(url)
+    }
+  }
 })
 </script>
 

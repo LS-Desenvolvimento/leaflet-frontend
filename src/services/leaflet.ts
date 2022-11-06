@@ -51,5 +51,13 @@ class LeafletMaps {
   public setCenter(waypoint: L.LatLngExpression) {
     this.map.setView(waypoint)
   }
+
+  public getAllWaypoints() {
+    return this.route.getWaypoints()
+  }
+
+  public onRouteChange(callback: (event: any) => void) {
+    this.route.on("routesfound", callback)
+  }
 }
 export default LeafletMaps
